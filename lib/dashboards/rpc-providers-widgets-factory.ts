@@ -12,6 +12,7 @@ const ID_TO_PROVIDER = (id: ChainId): string => {
     case ChainId.SEPOLIA:
     case ChainId.POLYGON:
     case ChainId.POLYGON_MUMBAI:
+    case ChainId.BNB_TESTNET:
     case ChainId.ARBITRUM_ONE:
     case ChainId.ARBITRUM_GOERLI:
     case ChainId.AVALANCHE:

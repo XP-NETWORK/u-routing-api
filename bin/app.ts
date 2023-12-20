@@ -168,7 +168,7 @@ export class RoutingAPIPipeline extends Stack {
 
     // Beta us-east-2
     const betaUsEast2Stage = new RoutingAPIStage(this, 'beta-us-east-2', {
-      env: { account: '145079444317', region: 'us-east-2' },
+      env: { account: '697184420048', region: 'us-east-2' },
       jsonRpcProviders: jsonRpcProviders,
       internalApiKey: internalApiKey.secretValue.toString(),
       provisionedConcurrency: 10,
@@ -190,7 +190,7 @@ export class RoutingAPIPipeline extends Stack {
 
     // Prod us-east-2
     const prodUsEast2Stage = new RoutingAPIStage(this, 'prod-us-east-2', {
-      env: { account: '606857263320', region: 'us-east-2' },
+      env: { account: '697184420048', region: 'us-east-2' },
       jsonRpcProviders: jsonRpcProviders,
       internalApiKey: internalApiKey.secretValue.toString(),
       provisionedConcurrency: 1000,
@@ -276,6 +276,7 @@ const jsonRpcProviders = {
   WEB3_RPC_421613: process.env.JSON_RPC_PROVIDER_421613!,
   WEB3_RPC_137: process.env.JSON_RPC_PROVIDER_137!,
   WEB3_RPC_80001: process.env.JSON_RPC_PROVIDER_80001!,
+  WEB3_RPC_97: process.env.JSON_RPC_PROVIDER_97!,
   WEB3_RPC_42220: process.env.JSON_RPC_PROVIDER_42220!,
   WEB3_RPC_44787: process.env.JSON_RPC_PROVIDER_44787!,
   WEB3_RPC_56: process.env.JSON_RPC_PROVIDER_56!,
@@ -303,5 +304,5 @@ new RoutingAPIStack(app, 'RoutingAPIStack', {
 })
 
 new RoutingAPIPipeline(app, 'RoutingAPIPipelineStack', {
-  env: { account: '644039819003', region: 'us-east-2' },
+  env: { account: '697184420048', region: 'us-east-2' },
 })

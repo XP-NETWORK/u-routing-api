@@ -61,6 +61,7 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.ARBITRUM_GOERLI,
   ChainId.POLYGON,
   ChainId.POLYGON_MUMBAI,
+  ChainId.BNB_TESTNET,
   ChainId.GOERLI,
   ChainId.SEPOLIA,
   ChainId.CELO,
