@@ -18,7 +18,7 @@
         "validateOnSynth": true,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::697184420048:role/cdk-hnb659fds-deploy-role-697184420048-us-east-2",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::697184420048:role/cdk-hnb659fds-cfn-exec-role-697184420048-us-east-2",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-697184420048-us-east-2/e630b0074b3a44cdd4c65cc503cb4173af50bef8664b4612d7465b8dc73fbaa6.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-697184420048-us-east-2/d3ee3c630d11d2be36f78555e014467b2be272b40d629b88530bb0678a7810ae.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -652,7 +652,7 @@
         "/RoutingAPIPipelineStack/beta-us-east-2/RoutingAPI/RoutingLambdaStack/RoutingLambda2/CurrentVersion/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "RoutingLambda2CurrentVersion49A1BB94d6b5e3d0dc709bbd7991a1f4f6a12d77"
+            "data": "RoutingLambda2CurrentVersion49A1BB943f6074f42fc2ef0a5f4d4a031273580d"
           }
         ],
         "/RoutingAPIPipelineStack/beta-us-east-2/RoutingAPI/RoutingLambdaStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource": [

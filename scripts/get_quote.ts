@@ -25,5 +25,5 @@ dotenv.config()
     quotePost
   )
 
-  console.log({ response }, "test2")
+  console.log({ response }, "test3")
 })()

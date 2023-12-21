@@ -32,7 +32,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/ddaf1d81766d894c54a7e98a9b0dc2e9290bbfac279a82e9cc0414fcdc2016b2.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/239e3c33db33ce89d6a76d6a437fbe06f1879c6a5136e8011ed7c35de521b638.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -635,7 +635,7 @@
         "/RoutingAPIStack/RoutingLambdaStack/RoutingLambda2/CurrentVersion/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "RoutingLambda2CurrentVersion49A1BB94c3d79adefeba775acece230fa5622b42"
+            "data": "RoutingLambda2CurrentVersion49A1BB946b8109c14cb3c871da165cdf8864913f"
           }
         ],
         "/RoutingAPIStack/RoutingLambdaStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource": [
@@ -1234,7 +1234,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::697184420048:role/cdk-hnb659fds-deploy-role-697184420048-us-east-2",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::697184420048:role/cdk-hnb659fds-cfn-exec-role-697184420048-us-east-2",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-697184420048-us-east-2/7173780ec0a5e1ff2497366a0b87d79db5809a90126a88b6ad3a33512826ce1b.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-697184420048-us-east-2/6efa18ddef258460f3fd6a5edf100a8dd574eddc714a000be1ec6991d587db18.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [

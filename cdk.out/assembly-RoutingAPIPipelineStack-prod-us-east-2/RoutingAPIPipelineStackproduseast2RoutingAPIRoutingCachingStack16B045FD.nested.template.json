@@ -184,7 +184,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-697184420048-us-east-2",
-     "S3Key": "89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2.zip"
+     "S3Key": "7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282.zip"
     },
     "Description": "Pool Cache Lambda for Chain with ChainId 1 and Protocol V3",
     "Environment": {
@@ -225,7 +225,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingCachingStack/PoolCacheLambda-ChainId1-ProtocolV3/Resource",
-    "aws:asset:path": "../asset.89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2",
+    "aws:asset:path": "../asset.7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -364,7 +364,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-697184420048-us-east-2",
-     "S3Key": "89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2.zip"
+     "S3Key": "7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282.zip"
     },
     "Description": "Pool Cache Lambda for Chain with ChainId 42161 and Protocol V3",
     "Environment": {
@@ -405,7 +405,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingCachingStack/PoolCacheLambda-ChainId42161-ProtocolV3/Resource",
-    "aws:asset:path": "../asset.89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2",
+    "aws:asset:path": "../asset.7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -544,7 +544,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-697184420048-us-east-2",
-     "S3Key": "89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2.zip"
+     "S3Key": "7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282.zip"
     },
     "Description": "Pool Cache Lambda for Chain with ChainId 137 and Protocol V3",
     "Environment": {
@@ -585,7 +585,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingCachingStack/PoolCacheLambda-ChainId137-ProtocolV3/Resource",
-    "aws:asset:path": "../asset.89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2",
+    "aws:asset:path": "../asset.7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -724,7 +724,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-697184420048-us-east-2",
-     "S3Key": "89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2.zip"
+     "S3Key": "7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282.zip"
     },
     "Description": "Pool Cache Lambda for Chain with ChainId 42220 and Protocol V3",
     "Environment": {
@@ -765,7 +765,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingCachingStack/PoolCacheLambda-ChainId42220-ProtocolV3/Resource",
-    "aws:asset:path": "../asset.89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2",
+    "aws:asset:path": "../asset.7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -904,7 +904,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-697184420048-us-east-2",
-     "S3Key": "89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2.zip"
+     "S3Key": "7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282.zip"
     },
     "Description": "Pool Cache Lambda for Chain with ChainId 56 and Protocol V3",
     "Environment": {
@@ -945,7 +945,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingCachingStack/PoolCacheLambda-ChainId56-ProtocolV3/Resource",
-    "aws:asset:path": "../asset.89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2",
+    "aws:asset:path": "../asset.7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1084,7 +1084,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-697184420048-us-east-2",
-     "S3Key": "89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2.zip"
+     "S3Key": "7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282.zip"
     },
     "Description": "Pool Cache Lambda for Chain with ChainId 43114 and Protocol V3",
     "Environment": {
@@ -1125,7 +1125,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingCachingStack/PoolCacheLambda-ChainId43114-ProtocolV3/Resource",
-    "aws:asset:path": "../asset.89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2",
+    "aws:asset:path": "../asset.7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1264,7 +1264,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-697184420048-us-east-2",
-     "S3Key": "89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2.zip"
+     "S3Key": "7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282.zip"
     },
     "Description": "Pool Cache Lambda for Chain with ChainId 8453 and Protocol V3",
     "Environment": {
@@ -1305,7 +1305,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingCachingStack/PoolCacheLambda-ChainId8453-ProtocolV3/Resource",
-    "aws:asset:path": "../asset.89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2",
+    "aws:asset:path": "../asset.7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1444,7 +1444,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-697184420048-us-east-2",
-     "S3Key": "89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2.zip"
+     "S3Key": "7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282.zip"
     },
     "Description": "Pool Cache Lambda for Chain with ChainId 1 and Protocol V2",
     "Environment": {
@@ -1485,7 +1485,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingCachingStack/PoolCacheLambda-ChainId1-ProtocolV2/Resource",
-    "aws:asset:path": "../asset.89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2",
+    "aws:asset:path": "../asset.7e7fa28d0d74795ee66924fdbab8c3505ca199c061c8768c50e336171a667282",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1624,7 +1624,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-697184420048-us-east-2",
-     "S3Key": "f2c990eddfa1dd2dbd07c656e2cd7b0ac01f9b8ac703d9e674529697bb65fccf.zip"
+     "S3Key": "321832b80c2bd7c25ae39daba304052cb3c108ed9e8d5f475e3b9c1623f2d7de.zip"
     },
     "Description": "IPFS Pool Cache Lambda",
     "Environment": {
@@ -1661,7 +1661,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingCachingStack/IpfsPoolCacheLambda/Resource",
-    "aws:asset:path": "../asset.f2c990eddfa1dd2dbd07c656e2cd7b0ac01f9b8ac703d9e674529697bb65fccf",
+    "aws:asset:path": "../asset.321832b80c2bd7c25ae39daba304052cb3c108ed9e8d5f475e3b9c1623f2d7de",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1714,7 +1714,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-697184420048-us-east-2",
-     "S3Key": "f5a4f11de29bba52b655425bcf2c3e41bc7cd107d2fd21b6d0441d7a06800748.zip"
+     "S3Key": "ce6eab688b6d8ff5a3352750d1f7b2d3eb3589f0c97a6bd1ad247f6f346bbc9e.zip"
     },
     "Description": "Clean IPFS Pool Cache Lambda",
     "Environment": {
@@ -1749,7 +1749,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingCachingStack/CleanIpfsPoolCacheLambda/Resource",
-    "aws:asset:path": "../asset.f5a4f11de29bba52b655425bcf2c3e41bc7cd107d2fd21b6d0441d7a06800748",
+    "aws:asset:path": "../asset.ce6eab688b6d8ff5a3352750d1f7b2d3eb3589f0c97a6bd1ad247f6f346bbc9e",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1836,7 +1836,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-697184420048-us-east-2",
-     "S3Key": "2289ddecbd0b2d841fdc421a4f8a2f5e8111a34857db2077e1e94fd46932a8e2.zip"
+     "S3Key": "1f642ab8703d2639455d52417a2392e2507708ce7b46a12e96dd0d3e868b8f77.zip"
     },
     "Description": "Token List Cache Lambda",
     "Environment": {
@@ -1870,7 +1870,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingCachingStack/TokenListCacheLambda/Resource",
-    "aws:asset:path": "../asset.2289ddecbd0b2d841fdc421a4f8a2f5e8111a34857db2077e1e94fd46932a8e2",
+    "aws:asset:path": "../asset.1f642ab8703d2639455d52417a2392e2507708ce7b46a12e96dd0d3e868b8f77",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
