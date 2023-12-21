@@ -1,0 +1,3073 @@
+{
+ "Resources": {
+  "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E": {
+   "Type": "AWS::KMS::Key",
+   "Properties": {
+    "KeyPolicy": {
+     "Statement": [
+      {
+       "Action": "kms:*",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::697184420048:root"
+          ]
+         ]
+        }
+       },
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::697184420048:role/cdk-hnb659fds-deploy-role-697184420048-us-east-2"
+          ]
+         ]
+        }
+       },
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/ArtifactsBucketEncryptionKey/Resource"
+   }
+  },
+  "RoutingAPIPipelineArtifactsBucketEncryptionKeyAliasA67140EB": {
+   "Type": "AWS::KMS::Alias",
+   "Properties": {
+    "AliasName": "alias/codepipeline-routingapipipelinestackroutingapipipeline920f2955",
+    "TargetKeyId": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/ArtifactsBucketEncryptionKeyAlias/Resource"
+   }
+  },
+  "RoutingAPIPipelineArtifactsBucket46004AA4": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketEncryption": {
+     "ServerSideEncryptionConfiguration": [
+      {
+       "ServerSideEncryptionByDefault": {
+        "KMSMasterKeyID": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+          "Arn"
+         ]
+        },
+        "SSEAlgorithm": "aws:kms"
+       }
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/ArtifactsBucket/Resource"
+   }
+  },
+  "RoutingAPIPipelineArtifactsBucketPolicy381C7265": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "RoutingAPIPipelineArtifactsBucket46004AA4"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineArtifactsBucket46004AA4",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "RoutingAPIPipelineArtifactsBucket46004AA4",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::697184420048:role/cdk-hnb659fds-deploy-role-697184420048-us-east-2"
+          ]
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineArtifactsBucket46004AA4",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "RoutingAPIPipelineArtifactsBucket46004AA4",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/ArtifactsBucket/Policy/Resource"
+   }
+  },
+  "RoutingAPIPipelineRoleC10197A3": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codepipeline.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/Role/Resource"
+   }
+  },
+  "RoutingAPIPipelineRoleDefaultPolicyE277F8DD": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineArtifactsBucket46004AA4",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "RoutingAPIPipelineArtifactsBucket46004AA4",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:Encrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":iam::697184420048:role/cdk-hnb659fds-deploy-role-697184420048-us-east-2"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RoutingAPIPipelineRoleDefaultPolicyE277F8DD",
+    "Roles": [
+     {
+      "Ref": "RoutingAPIPipelineRoleC10197A3"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/Role/DefaultPolicy/Resource"
+   }
+  },
+  "RoutingAPIPipelineE656B7FF": {
+   "Type": "AWS::CodePipeline::Pipeline",
+   "Properties": {
+    "ArtifactStore": {
+     "EncryptionKey": {
+      "Id": {
+       "Fn::GetAtt": [
+        "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+        "Arn"
+       ]
+      },
+      "Type": "KMS"
+     },
+     "Location": {
+      "Ref": "RoutingAPIPipelineArtifactsBucket46004AA4"
+     },
+     "Type": "S3"
+    },
+    "Name": "RoutingAPI",
+    "RestartExecutionOnUpdate": true,
+    "RoleArn": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineRoleC10197A3",
+      "Arn"
+     ]
+    },
+    "Stages": [
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Source",
+         "Owner": "ThirdParty",
+         "Provider": "GitHub",
+         "Version": "1"
+        },
+        "Configuration": {
+         "Owner": "Uniswap",
+         "Repo": "routing-api",
+         "Branch": "main",
+         "OAuthToken": "{{resolve:secretsmanager:github-token-2:SecretString:::}}",
+         "PollForSourceChanges": false
+        },
+        "Name": "Uniswap_routing-api",
+        "OutputArtifacts": [
+         {
+          "Name": "Uniswap_routing_api_Source"
+         }
+        ],
+        "RunOrder": 1
+       }
+      ],
+      "Name": "Source"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineBuildSynthCdkBuildProject55D591C9"
+         },
+         "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"9f7e8aef8f6b67ee4cafa6ae7653641fd425fe794d8727adc5b15ffe3737e369\"}]"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Uniswap_routing_api_Source"
+         }
+        ],
+        "Name": "Synth",
+        "OutputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       }
+      ],
+      "Name": "Build"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineUpdatePipelineSelfMutation5C2760FF"
+         },
+         "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"418f7684c6edc766a5f5b64e7c194e182bca8c9e2fc32a7ede453ff8d0c7d343\"}]"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "SelfMutate",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       }
+      ],
+      "Name": "UpdatePipeline"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset150126EB6"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset1",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset10DB2F4509"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset10",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset1136CF3157"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset11",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset128BEB0D10"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset12",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset13AC8910C6"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset13",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset1424F014BF"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset14",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset2CBE6C442"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset2",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset3BFB9ADA6"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset3",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset4F9F87AB9"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset4",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset5659DE140"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset5",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset6DBB4964D"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset6",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset751ECCA5A"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset7",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset8C5A21A0B"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset8",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineAssetsFileAsset95B9AF217"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "FileAsset9",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       }
+      ],
+      "Name": "Assets"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CloudFormation",
+         "Version": "1"
+        },
+        "Configuration": {
+         "StackName": "beta-us-east-2-RoutingAPI",
+         "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
+         "RoleArn": {
+          "Fn::Join": [
+           "",
+           [
+            "arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":iam::697184420048:role/cdk-hnb659fds-cfn-exec-role-697184420048-us-east-2"
+           ]
+          ]
+         },
+         "ActionMode": "CHANGE_SET_REPLACE",
+         "ChangeSetName": "PipelineChange",
+         "TemplatePath": "Synth_Output::assembly-RoutingAPIPipelineStack-beta-us-east-2/RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567.template.json"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "RoutingAPI.Prepare",
+        "RoleArn": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::697184420048:role/cdk-hnb659fds-deploy-role-697184420048-us-east-2"
+          ]
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CloudFormation",
+         "Version": "1"
+        },
+        "Configuration": {
+         "StackName": "beta-us-east-2-RoutingAPI",
+         "ActionMode": "CHANGE_SET_EXECUTE",
+         "ChangeSetName": "PipelineChange"
+        },
+        "Name": "RoutingAPI.Deploy",
+        "Namespace": "RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567",
+        "RoleArn": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::697184420048:role/cdk-hnb659fds-deploy-role-697184420048-us-east-2"
+          ]
+         ]
+        },
+        "RunOrder": 2
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelinebetauseast2IntegTestsbetauseast29A2EBF0D"
+         },
+         "EnvironmentVariables": "[{\"name\":\"UNISWAP_ROUTING_API\",\"type\":\"PLAINTEXT\",\"value\":\"#{RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567.Url}\"}]"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Uniswap_routing_api_Source"
+         }
+        ],
+        "Name": "IntegTests-beta-us-east-2",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 3
+       }
+      ],
+      "Name": "beta-us-east-2"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CloudFormation",
+         "Version": "1"
+        },
+        "Configuration": {
+         "StackName": "prod-us-east-2-RoutingAPI",
+         "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
+         "RoleArn": {
+          "Fn::Join": [
+           "",
+           [
+            "arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":iam::697184420048:role/cdk-hnb659fds-cfn-exec-role-697184420048-us-east-2"
+           ]
+          ]
+         },
+         "ActionMode": "CHANGE_SET_REPLACE",
+         "ChangeSetName": "PipelineChange",
+         "TemplatePath": "Synth_Output::assembly-RoutingAPIPipelineStack-prod-us-east-2/RoutingAPIPipelineStackproduseast2RoutingAPI4D0D3E0F.template.json"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "RoutingAPI.Prepare",
+        "RoleArn": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::697184420048:role/cdk-hnb659fds-deploy-role-697184420048-us-east-2"
+          ]
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CloudFormation",
+         "Version": "1"
+        },
+        "Configuration": {
+         "StackName": "prod-us-east-2-RoutingAPI",
+         "ActionMode": "CHANGE_SET_EXECUTE",
+         "ChangeSetName": "PipelineChange"
+        },
+        "Name": "RoutingAPI.Deploy",
+        "Namespace": "RoutingAPIPipelineStackproduseast2RoutingAPI4D0D3E0F",
+        "RoleArn": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::697184420048:role/cdk-hnb659fds-deploy-role-697184420048-us-east-2"
+          ]
+         ]
+        },
+        "RunOrder": 2
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "RoutingAPIPipelineproduseast2IntegTestsproduseast2F7FDFFFC"
+         },
+         "EnvironmentVariables": "[{\"name\":\"UNISWAP_ROUTING_API\",\"type\":\"PLAINTEXT\",\"value\":\"#{RoutingAPIPipelineStackproduseast2RoutingAPI4D0D3E0F.Url}\"}]"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Uniswap_routing_api_Source"
+         }
+        ],
+        "Name": "IntegTests-prod-us-east-2",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5",
+          "Arn"
+         ]
+        },
+        "RunOrder": 3
+       }
+      ],
+      "Name": "prod-us-east-2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "RoutingAPIPipelineRoleDefaultPolicyE277F8DD",
+    "RoutingAPIPipelineRoleC10197A3"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/Resource"
+   }
+  },
+  "RoutingAPIPipelineSourceUniswaproutingapiWebhookResourceA9D73B37": {
+   "Type": "AWS::CodePipeline::Webhook",
+   "Properties": {
+    "Authentication": "GITHUB_HMAC",
+    "AuthenticationConfiguration": {
+     "SecretToken": "{{resolve:secretsmanager:github-token-2:SecretString:::}}"
+    },
+    "Filters": [
+     {
+      "JsonPath": "$.ref",
+      "MatchEquals": "refs/heads/{Branch}"
+     }
+    ],
+    "RegisterWithThirdParty": true,
+    "TargetAction": "Uniswap_routing-api",
+    "TargetPipeline": {
+     "Ref": "RoutingAPIPipelineE656B7FF"
+    },
+    "TargetPipelineVersion": 1
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/Source/Uniswap_routing-api/WebhookResource"
+   }
+  },
+  "RoutingAPIPipelineBuildSynthCdkBuildProjectRoleB0A70D35": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codebuild.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/Build/Synth/CdkBuildProject/Role/Resource"
+   }
+  },
+  "RoutingAPIPipelineBuildSynthCdkBuildProjectRoleDefaultPolicyEEA6FC6A": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "secretsmanager:GetSecretValue",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":secretsmanager:us-east-2:697184420048:secret:npm-private-repo-access-token-??????"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:us-east-2:697184420048:log-group:/aws/codebuild/",
+           {
+            "Ref": "RoutingAPIPipelineBuildSynthCdkBuildProject55D591C9"
+           }
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:us-east-2:697184420048:log-group:/aws/codebuild/",
+           {
+            "Ref": "RoutingAPIPipelineBuildSynthCdkBuildProject55D591C9"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "codebuild:CreateReportGroup",
+        "codebuild:CreateReport",
+        "codebuild:UpdateReport",
+        "codebuild:BatchPutTestCases",
+        "codebuild:BatchPutCodeCoverages"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":codebuild:us-east-2:697184420048:report-group/",
+          {
+           "Ref": "RoutingAPIPipelineBuildSynthCdkBuildProject55D591C9"
+          },
+          "-*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineArtifactsBucket46004AA4",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "RoutingAPIPipelineArtifactsBucket46004AA4",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:Encrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:Encrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RoutingAPIPipelineBuildSynthCdkBuildProjectRoleDefaultPolicyEEA6FC6A",
+    "Roles": [
+     {
+      "Ref": "RoutingAPIPipelineBuildSynthCdkBuildProjectRoleB0A70D35"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/Build/Synth/CdkBuildProject/Role/DefaultPolicy/Resource"
+   }
+  },
+  "RoutingAPIPipelineBuildSynthCdkBuildProject55D591C9": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Build/Synth",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "EnvironmentVariables": [
+      {
+       "Name": "NPM_TOKEN",
+       "Type": "SECRETS_MANAGER",
+       "Value": "npm-private-repo-access-token"
+      }
+     ],
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineBuildSynthCdkBuildProjectRoleB0A70D35",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"build\": {\n      \"commands\": [\n        \"echo \\\"//registry.npmjs.org/:_authToken=${NPM_TOKEN}\\\" > .npmrc && npm ci\",\n        \"npm run build\",\n        \"npx cdk synth\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"base-directory\": \"cdk.out\",\n    \"files\": \"**/*\"\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/Build/Synth/CdkBuildProject/Resource"
+   }
+  },
+  "RoutingAPIPipelinebetauseast2IntegTestsbetauseast2Role35DE3E42": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codebuild.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/beta-us-east-2/IntegTests-beta-us-east-2/IntegTests-beta-us-east-2/Role/Resource"
+   }
+  },
+  "RoutingAPIPipelinebetauseast2IntegTestsbetauseast2RoleDefaultPolicy6226E5A1": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "secretsmanager:GetSecretValue",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":secretsmanager:us-east-2:697184420048:secret:npm-private-repo-access-token-??????"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":secretsmanager:us-east-2:697184420048:secret:archive-node-rpc-url-default-kms-??????"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:us-east-2:697184420048:log-group:/aws/codebuild/",
+           {
+            "Ref": "RoutingAPIPipelinebetauseast2IntegTestsbetauseast29A2EBF0D"
+           }
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:us-east-2:697184420048:log-group:/aws/codebuild/",
+           {
+            "Ref": "RoutingAPIPipelinebetauseast2IntegTestsbetauseast29A2EBF0D"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "codebuild:CreateReportGroup",
+        "codebuild:CreateReport",
+        "codebuild:UpdateReport",
+        "codebuild:BatchPutTestCases",
+        "codebuild:BatchPutCodeCoverages"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":codebuild:us-east-2:697184420048:report-group/",
+          {
+           "Ref": "RoutingAPIPipelinebetauseast2IntegTestsbetauseast29A2EBF0D"
+          },
+          "-*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineArtifactsBucket46004AA4",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "RoutingAPIPipelineArtifactsBucket46004AA4",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:Encrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RoutingAPIPipelinebetauseast2IntegTestsbetauseast2RoleDefaultPolicy6226E5A1",
+    "Roles": [
+     {
+      "Ref": "RoutingAPIPipelinebetauseast2IntegTestsbetauseast2Role35DE3E42"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/beta-us-east-2/IntegTests-beta-us-east-2/IntegTests-beta-us-east-2/Role/DefaultPolicy/Resource"
+   }
+  },
+  "RoutingAPIPipelinebetauseast2IntegTestsbetauseast29A2EBF0D": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/beta-us-east-2/IntegTests-beta-us-east-2",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "EnvironmentVariables": [
+      {
+       "Name": "NPM_TOKEN",
+       "Type": "SECRETS_MANAGER",
+       "Value": "npm-private-repo-access-token"
+      },
+      {
+       "Name": "ARCHIVE_NODE_RPC",
+       "Type": "SECRETS_MANAGER",
+       "Value": "archive-node-rpc-url-default-kms"
+      }
+     ],
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "Name": "IntegTests-beta-us-east-2",
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelinebetauseast2IntegTestsbetauseast2Role35DE3E42",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"build\": {\n      \"commands\": [\n        \"echo \\\"//registry.npmjs.org/:_authToken=${NPM_TOKEN}\\\" > .npmrc && npm ci\",\n        \"echo \\\"UNISWAP_ROUTING_API=${UNISWAP_ROUTING_API}\\\" > .env\",\n        \"echo \\\"ARCHIVE_NODE_RPC=${ARCHIVE_NODE_RPC}\\\" >> .env\",\n        \"npm install\",\n        \"npm run build\",\n        \"npm run integ-test\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/beta-us-east-2/IntegTests-beta-us-east-2/IntegTests-beta-us-east-2/Resource"
+   }
+  },
+  "RoutingAPIPipelineproduseast2IntegTestsproduseast2Role45D99736": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codebuild.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/prod-us-east-2/IntegTests-prod-us-east-2/IntegTests-prod-us-east-2/Role/Resource"
+   }
+  },
+  "RoutingAPIPipelineproduseast2IntegTestsproduseast2RoleDefaultPolicy8ED83ED9": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "secretsmanager:GetSecretValue",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":secretsmanager:us-east-2:697184420048:secret:npm-private-repo-access-token-??????"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":secretsmanager:us-east-2:697184420048:secret:archive-node-rpc-url-default-kms-??????"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:us-east-2:697184420048:log-group:/aws/codebuild/",
+           {
+            "Ref": "RoutingAPIPipelineproduseast2IntegTestsproduseast2F7FDFFFC"
+           }
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:us-east-2:697184420048:log-group:/aws/codebuild/",
+           {
+            "Ref": "RoutingAPIPipelineproduseast2IntegTestsproduseast2F7FDFFFC"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "codebuild:CreateReportGroup",
+        "codebuild:CreateReport",
+        "codebuild:UpdateReport",
+        "codebuild:BatchPutTestCases",
+        "codebuild:BatchPutCodeCoverages"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":codebuild:us-east-2:697184420048:report-group/",
+          {
+           "Ref": "RoutingAPIPipelineproduseast2IntegTestsproduseast2F7FDFFFC"
+          },
+          "-*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineArtifactsBucket46004AA4",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "RoutingAPIPipelineArtifactsBucket46004AA4",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:Encrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RoutingAPIPipelineproduseast2IntegTestsproduseast2RoleDefaultPolicy8ED83ED9",
+    "Roles": [
+     {
+      "Ref": "RoutingAPIPipelineproduseast2IntegTestsproduseast2Role45D99736"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/prod-us-east-2/IntegTests-prod-us-east-2/IntegTests-prod-us-east-2/Role/DefaultPolicy/Resource"
+   }
+  },
+  "RoutingAPIPipelineproduseast2IntegTestsproduseast2F7FDFFFC": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/prod-us-east-2/IntegTests-prod-us-east-2",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "EnvironmentVariables": [
+      {
+       "Name": "NPM_TOKEN",
+       "Type": "SECRETS_MANAGER",
+       "Value": "npm-private-repo-access-token"
+      },
+      {
+       "Name": "ARCHIVE_NODE_RPC",
+       "Type": "SECRETS_MANAGER",
+       "Value": "archive-node-rpc-url-default-kms"
+      }
+     ],
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "Name": "IntegTests-prod-us-east-2",
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineproduseast2IntegTestsproduseast2Role45D99736",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"build\": {\n      \"commands\": [\n        \"echo \\\"//registry.npmjs.org/:_authToken=${NPM_TOKEN}\\\" > .npmrc && npm ci\",\n        \"echo \\\"UNISWAP_ROUTING_API=${UNISWAP_ROUTING_API}\\\" > .env\",\n        \"echo \\\"ARCHIVE_NODE_RPC=${ARCHIVE_NODE_RPC}\\\" >> .env\",\n        \"npm install\",\n        \"npm run build\",\n        \"npm run integ-test\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/prod-us-east-2/IntegTests-prod-us-east-2/IntegTests-prod-us-east-2/Resource"
+   }
+  },
+  "RoutingAPIPipelineNotifySlackC940C89E": {
+   "Type": "AWS::CodeStarNotifications::NotificationRule",
+   "Properties": {
+    "DetailType": "FULL",
+    "EventTypeIds": [
+     "codepipeline-pipeline-pipeline-execution-failed"
+    ],
+    "Name": "RoutingAPIPipelineStackRoutingAPIPipelineNotifySlackEA8F6CDC",
+    "Resource": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":codepipeline:us-east-2:697184420048:",
+       {
+        "Ref": "RoutingAPIPipelineE656B7FF"
+       }
+      ]
+     ]
+    },
+    "Targets": [
+     {
+      "TargetAddress": "arn:aws:chatbot::644039819003:chat-configuration/slack-channel/eng-ops-slack-chatbot",
+      "TargetType": "AWSChatbotSlack"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Pipeline/NotifySlack/Resource"
+   }
+  },
+  "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineRoleC10197A3",
+          "Arn"
+         ]
+        }
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/CodeBuildActionRole/Resource"
+   }
+  },
+  "RoutingAPIPipelineCodeBuildActionRoleDefaultPolicy5A25D0D0": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineBuildSynthCdkBuildProject55D591C9",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineUpdatePipelineSelfMutation5C2760FF",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset150126EB6",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset10DB2F4509",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset1136CF3157",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset128BEB0D10",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset13AC8910C6",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset1424F014BF",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset2CBE6C442",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset3BFB9ADA6",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset4F9F87AB9",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset5659DE140",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset6DBB4964D",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset751ECCA5A",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset8C5A21A0B",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineAssetsFileAsset95B9AF217",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelinebetauseast2IntegTestsbetauseast29A2EBF0D",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineproduseast2IntegTestsproduseast2F7FDFFFC",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RoutingAPIPipelineCodeBuildActionRoleDefaultPolicy5A25D0D0",
+    "Roles": [
+     {
+      "Ref": "RoutingAPIPipelineCodeBuildActionRoleA8D00FB5"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/CodeBuildActionRole/DefaultPolicy/Resource"
+   }
+  },
+  "RoutingAPIPipelineUpdatePipelineSelfMutationRoleA90BA93B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codebuild.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/UpdatePipeline/SelfMutation/Role/Resource"
+   }
+  },
+  "RoutingAPIPipelineUpdatePipelineSelfMutationRoleDefaultPolicyDF41B1EC": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:us-east-2:697184420048:log-group:/aws/codebuild/",
+           {
+            "Ref": "RoutingAPIPipelineUpdatePipelineSelfMutation5C2760FF"
+           }
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:us-east-2:697184420048:log-group:/aws/codebuild/",
+           {
+            "Ref": "RoutingAPIPipelineUpdatePipelineSelfMutation5C2760FF"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "codebuild:CreateReportGroup",
+        "codebuild:CreateReport",
+        "codebuild:UpdateReport",
+        "codebuild:BatchPutTestCases",
+        "codebuild:BatchPutCodeCoverages"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":codebuild:us-east-2:697184420048:report-group/",
+          {
+           "Ref": "RoutingAPIPipelineUpdatePipelineSelfMutation5C2760FF"
+          },
+          "-*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Condition": {
+        "ForAnyValue:StringEquals": {
+         "iam:ResourceTag/aws-cdk:bootstrap-role": [
+          "image-publishing",
+          "file-publishing",
+          "deploy"
+         ]
+        }
+       },
+       "Effect": "Allow",
+       "Resource": "arn:*:iam::697184420048:role/*"
+      },
+      {
+       "Action": "cloudformation:DescribeStacks",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "s3:ListBucket",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineArtifactsBucket46004AA4",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "RoutingAPIPipelineArtifactsBucket46004AA4",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:Encrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RoutingAPIPipelineUpdatePipelineSelfMutationRoleDefaultPolicyDF41B1EC",
+    "Roles": [
+     {
+      "Ref": "RoutingAPIPipelineUpdatePipelineSelfMutationRoleA90BA93B"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/UpdatePipeline/SelfMutation/Role/DefaultPolicy/Resource"
+   }
+  },
+  "RoutingAPIPipelineUpdatePipelineSelfMutation5C2760FF": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/UpdatePipeline/SelfMutate",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "Name": "RoutingAPI-selfupdate",
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineUpdatePipelineSelfMutationRoleA90BA93B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g aws-cdk@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk -a . deploy RoutingAPIPipelineStack --require-approval=never --verbose\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/UpdatePipeline/SelfMutation/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileRoleD1E4A14B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codebuild.amazonaws.com"
+       }
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::697184420048:root"
+          ]
+         ]
+        }
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileRole/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileRoleDefaultPolicyBDBF907E": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":logs:us-east-2:697184420048:log-group:/aws/codebuild/*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:CreateReportGroup",
+        "codebuild:CreateReport",
+        "codebuild:UpdateReport",
+        "codebuild:BatchPutTestCases",
+        "codebuild:BatchPutCodeCoverages"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":codebuild:us-east-2:697184420048:report-group/*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Sub": "arn:${AWS::Partition}:iam::697184420048:role/cdk-hnb659fds-file-publishing-role-697184420048-us-east-2"
+       }
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "RoutingAPIPipelineArtifactsBucket46004AA4",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "RoutingAPIPipelineArtifactsBucket46004AA4",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RoutingAPIPipelineAssetsFileRoleDefaultPolicyBDBF907E",
+    "Roles": [
+     {
+      "Ref": "RoutingAPIPipelineAssetsFileRoleD1E4A14B"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileRole/DefaultPolicy/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset150126EB6": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset1",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-beta-us-east-2/RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567.assets.json\\\" --verbose publish \\\"89aee59f9b0bfe199f0ba139712a51875e6cec8f23eb38dc03b1295e5f7dbfe2:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset1/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset10DB2F4509": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset10",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-beta-us-east-2/RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567.assets.json\\\" --verbose publish \\\"bea05ec7caa0c8a5670bd849d1388faad657adee349cd417b7018f9501433f22:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset10/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset1136CF3157": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset11",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-prod-us-east-2/RoutingAPIPipelineStackproduseast2RoutingAPI4D0D3E0F.assets.json\\\" --verbose publish \\\"f25c24432d65e3303a1f6a647ffd4f8fb35b25ed1e4c3110fbb68a8c91585e8f:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset11/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset128BEB0D10": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset12",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-prod-us-east-2/RoutingAPIPipelineStackproduseast2RoutingAPI4D0D3E0F.assets.json\\\" --verbose publish \\\"650f011494f3ffef2c02bef880ef41e4c100d4a7313d0226bdb84837aa5655e7:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset12/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset13AC8910C6": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset13",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-prod-us-east-2/RoutingAPIPipelineStackproduseast2RoutingAPI4D0D3E0F.assets.json\\\" --verbose publish \\\"f32de809d713ea94c71e192ebdd4d2a198819fddea9aa8bd4aa020b60207105b:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset13/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset1424F014BF": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset14",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-prod-us-east-2/RoutingAPIPipelineStackproduseast2RoutingAPI4D0D3E0F.assets.json\\\" --verbose publish \\\"e03214841db05aa8c13b62b290aed0a947e2d2133b90b70e1a0e1059606bb2cf:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset14/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset2CBE6C442": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset2",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-beta-us-east-2/RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567.assets.json\\\" --verbose publish \\\"f2c990eddfa1dd2dbd07c656e2cd7b0ac01f9b8ac703d9e674529697bb65fccf:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset2/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset3BFB9ADA6": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset3",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-beta-us-east-2/RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567.assets.json\\\" --verbose publish \\\"f5a4f11de29bba52b655425bcf2c3e41bc7cd107d2fd21b6d0441d7a06800748:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset3/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset4F9F87AB9": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset4",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-beta-us-east-2/RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567.assets.json\\\" --verbose publish \\\"2289ddecbd0b2d841fdc421a4f8a2f5e8111a34857db2077e1e94fd46932a8e2:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset4/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset5659DE140": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset5",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-beta-us-east-2/RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567.assets.json\\\" --verbose publish \\\"0d47ca186d97128328dd94575b88ca76555aa91173d17eebf2b9cb2bcdddbb95:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset5/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset6DBB4964D": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset6",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-beta-us-east-2/RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567.assets.json\\\" --verbose publish \\\"4e26bf2d0a26f2097fb2b261f22bb51e3f6b4b52635777b1e54edbd8e2d58c35:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset6/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset751ECCA5A": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset7",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-beta-us-east-2/RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567.assets.json\\\" --verbose publish \\\"09a617e04050e379922d28f31b536d82e23e7969c36951076ca4f0559a2dd293:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset7/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset8C5A21A0B": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset8",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-beta-us-east-2/RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567.assets.json\\\" --verbose publish \\\"5634dd58b08b540f86bb9b31704c225c31b34915572a0a6785f127c15b760a95:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset8/Resource"
+   }
+  },
+  "RoutingAPIPipelineAssetsFileAsset95B9AF217": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step RoutingAPIPipelineStack/Pipeline/Assets/FileAsset9",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineArtifactsBucketEncryptionKey734A0B2E",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:7.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "RoutingAPIPipelineAssetsFileRoleD1E4A14B",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-RoutingAPIPipelineStack-beta-us-east-2/RoutingAPIPipelineStackbetauseast2RoutingAPI34C76567.assets.json\\\" --verbose publish \\\"7d754569a4030a9095814cc00c181527b5767e70022d8a27884dfca6663e7cbb:697184420048-us-east-2\\\"\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/RoutingAPIPipeline/Assets/FileAsset9/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Qy27DIBD8lt7xNnHUD2hzjFRZziHHCmOirMFsZCBRhPj3gnHqqKd57IgZUcN2+wGbN363lehVpbGDcHRcKHbFq9RopIU99bJZFEvJnyCS87xD+Lvtz+aVn2R3IVKRqdFCOMhHNjN8auQ2i5lEZncQvrxQ0mVzYQUa0igeq110ZMhHCC3puWjGNfnM5JWdR92vE5uJBinmmoWWmHV8MuTwjII7JJP2fr/I1pei/16MrJWW/CTKjoVHZtKbMNj3W72BOv3vYBGryRuHo4S24C/FXlxcfAEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

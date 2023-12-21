@@ -1,0 +1,320 @@
+{
+ "Resources": {
+  "RoutesDB883C11D2": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "routeId",
+      "AttributeType": "N"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "routeId",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "RoutesDB",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingDatabaseStack/RoutesDB/Resource"
+   }
+  },
+  "RoutesDbCacheReqFlagDB1EB318E9": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "amount",
+      "AttributeType": "N"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "amount",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "RoutesDbCacheReqFlagDB",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingDatabaseStack/RoutesDbCacheReqFlagDB/Resource"
+   }
+  },
+  "RouteCachingDB1361CA88": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "protocolsBucketBlockNumber",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "protocolsBucketBlockNumber",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "RouteCachingDB",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingDatabaseStack/RouteCachingDB/Resource"
+   }
+  },
+  "CacheReqFlagDB8C36522C": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "protocolsBucketBlockNumber",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "protocolsBucketBlockNumber",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "CacheReqFlagDB",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingDatabaseStack/CacheReqFlagDB/Resource"
+   }
+  },
+  "V3PoolsCachingDB667282EE": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "poolAddress",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "blockNumber",
+      "AttributeType": "N"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "poolAddress",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "blockNumber",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "V3PoolsCachingDB",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingDatabaseStack/V3PoolsCachingDB/Resource"
+   }
+  },
+  "V2PairsCachingDB4388D001": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "cacheKey",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "block",
+      "AttributeType": "N"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "cacheKey",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "block",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "V2PairsCachingDB",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingDatabaseStack/V2PairsCachingDB/Resource"
+   }
+  },
+  "TokenPropertiesCachingDb5F988F37": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "chainIdTokenAddress",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "chainIdTokenAddress",
+      "KeyType": "HASH"
+     }
+    ],
+    "TableName": "TokenPropertiesCachingDb",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingDatabaseStack/TokenPropertiesCachingDb/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zWMOwqAMBAFz2KfrBrwBPYWai8xu0L8JOBGRcS7GxSrN7yBUZDnBWSJPlganORse7gq4kDYBG0mEUWHp9OLx2ha3c8kysG9cIua2G+rea+fb+E8Eoyc7ioDFeMjWyvXzQW7ENTfPufM/vh5AAAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIPipelineStack/prod-us-east-2/RoutingAPI/RoutingDatabaseStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "RoutingAPIPipelineStackproduseast2RoutingAPIRoutingDatabaseStackRoutesDB63AAFDB3Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RoutesDB883C11D2",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIPipelineStackproduseast2RoutingAPIRoutingDatabaseStackRoutesDbCacheReqFlagDB60DF704DArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RoutesDbCacheReqFlagDB1EB318E9",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIPipelineStackproduseast2RoutingAPIRoutingDatabaseStackRouteCachingDB7AB4AD35Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RouteCachingDB1361CA88",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIPipelineStackproduseast2RoutingAPIRoutingDatabaseStackCacheReqFlagDB18D66FF7Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "CacheReqFlagDB8C36522C",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIPipelineStackproduseast2RoutingAPIRoutingDatabaseStackV3PoolsCachingDB8F41E13DArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "V3PoolsCachingDB667282EE",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIPipelineStackproduseast2RoutingAPIRoutingDatabaseStackV2PairsCachingDB31FAF5E1Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "V2PairsCachingDB4388D001",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIPipelineStackproduseast2RoutingAPIRoutingDatabaseStackTokenPropertiesCachingDbBA66272EArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "TokenPropertiesCachingDb5F988F37",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIPipelineStackproduseast2RoutingAPIRoutingDatabaseStackTokenPropertiesCachingDbBA66272ERef": {
+   "Value": {
+    "Ref": "TokenPropertiesCachingDb5F988F37"
+   }
+  }
+ }
+}

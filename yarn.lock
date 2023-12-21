@@ -3146,7 +3146,7 @@ __metadata:
     "@uniswap/permit2-sdk": ^1.2.0
     "@uniswap/router-sdk": ^1.6.0
     "@uniswap/sdk-core": "https://github.com/XP-NETWORK/u-sdk-core.git"
-    "@uniswap/smart-order-router": "https://github.com/XP-NETWORK/u-smart-order-router.git"
+    "@uniswap/smart-order-router": "https://github.com/XP-NETWORK/u-smart-order-router.git#commit=84c7787bc641b4167249135c4386c3d848acd72a"
     "@uniswap/token-lists": ^1.0.0-beta.33
     "@uniswap/universal-router-sdk": "https://github.com/XP-NETWORK/u-universal-router-sdk.git"
     "@uniswap/v2-sdk": ^3.2.3
@@ -3234,9 +3234,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uniswap/smart-order-router@https://github.com/XP-NETWORK/u-smart-order-router.git":
-  version: 3.19.3
-  resolution: "@uniswap/smart-order-router@https://github.com/XP-NETWORK/u-smart-order-router.git#commit=f5cd9f5914fe1c60f31f44737ba504930e75013d"
+"@uniswap/smart-order-router@https://github.com/XP-NETWORK/u-smart-order-router.git#commit=84c7787bc641b4167249135c4386c3d848acd72a":
+  version: 3.19.7
+  resolution: "@uniswap/smart-order-router@https://github.com/XP-NETWORK/u-smart-order-router.git#commit=84c7787bc641b4167249135c4386c3d848acd72a"
   dependencies:
     "@uniswap/default-token-list": ^11.2.0
     "@uniswap/permit2-sdk": ^1.2.0
@@ -3262,7 +3262,7 @@ __metadata:
     stats-lite: ^2.2.0
   peerDependencies:
     jsbi: ^3.2.0
-  checksum: 7d3a493d865e9b771dc96646287d001f894b89783b102844561896b5778741e1fff8629ce3259ce590e4cad67d5ee7d302ec7c0da128313afe2281a806604509
+  checksum: a1bfc24f585418928448cdcaf668bd8f9c09b16da0dbb6853b8a95078f3f8e79d21a72fc9a11305a169f937ad937b2460e5697c545accab6cc966dc078d45320
   languageName: node
   linkType: hard
 

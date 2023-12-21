@@ -1,0 +1,531 @@
+{
+ "Resources": {
+  "RoutesDB883C11D2": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "routeId",
+      "AttributeType": "N"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "routeId",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "RoutesDB",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIStack/RoutingDatabaseStack/RoutesDB/Resource"
+   }
+  },
+  "RoutesDbCacheReqFlagDB1EB318E9": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "amount",
+      "AttributeType": "N"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "amount",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "RoutesDbCacheReqFlagDB",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIStack/RoutingDatabaseStack/RoutesDbCacheReqFlagDB/Resource"
+   }
+  },
+  "RouteCachingDB1361CA88": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "protocolsBucketBlockNumber",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "protocolsBucketBlockNumber",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "RouteCachingDB",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIStack/RoutingDatabaseStack/RouteCachingDB/Resource"
+   }
+  },
+  "CacheReqFlagDB8C36522C": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "protocolsBucketBlockNumber",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "pairTradeTypeChainId",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "protocolsBucketBlockNumber",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "CacheReqFlagDB",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIStack/RoutingDatabaseStack/CacheReqFlagDB/Resource"
+   }
+  },
+  "V3PoolsCachingDB667282EE": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "poolAddress",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "blockNumber",
+      "AttributeType": "N"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "poolAddress",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "blockNumber",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "V3PoolsCachingDB",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIStack/RoutingDatabaseStack/V3PoolsCachingDB/Resource"
+   }
+  },
+  "V2PairsCachingDB4388D001": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "cacheKey",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "block",
+      "AttributeType": "N"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "cacheKey",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "block",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "V2PairsCachingDB",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIStack/RoutingDatabaseStack/V2PairsCachingDB/Resource"
+   }
+  },
+  "TokenPropertiesCachingDb5F988F37": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "chainIdTokenAddress",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "chainIdTokenAddress",
+      "KeyType": "HASH"
+     }
+    ],
+    "TableName": "TokenPropertiesCachingDb",
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIStack/RoutingDatabaseStack/TokenPropertiesCachingDb/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSMzQ01TNQTCwv1k1OydbNyUzSq/ZLLS5JTQkuSUzO1gFKxKdU5iXm5qcAZUISk3JSdZzT8sCMWp2g1OL80qJksBAy2zk/LyWzJDM/r1YnLz8lVS+rWL/MyEDPCGhTVnFmpm5RaV5JZm6qXhCEBgBOifChhgAAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "RoutingAPIStack/RoutingDatabaseStack/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-2"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "Outputs": {
+  "RoutingAPIStackRoutingDatabaseStackRoutesDBCD90207EArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RoutesDB883C11D2",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIStackRoutingDatabaseStackRoutesDbCacheReqFlagDB77FB2D53Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RoutesDbCacheReqFlagDB1EB318E9",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIStackRoutingDatabaseStackRouteCachingDB3F557D78Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RouteCachingDB1361CA88",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIStackRoutingDatabaseStackCacheReqFlagDB8F274447Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "CacheReqFlagDB8C36522C",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIStackRoutingDatabaseStackV3PoolsCachingDBB5CFCA07Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "V3PoolsCachingDB667282EE",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIStackRoutingDatabaseStackV2PairsCachingDB8C68B0F6Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "V2PairsCachingDB4388D001",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIStackRoutingDatabaseStackTokenPropertiesCachingDbC771742DArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "TokenPropertiesCachingDb5F988F37",
+     "Arn"
+    ]
+   }
+  },
+  "RoutingAPIStackRoutingDatabaseStackTokenPropertiesCachingDbC771742DRef": {
+   "Value": {
+    "Ref": "TokenPropertiesCachingDb5F988F37"
+   }
+  }
+ }
+}

@@ -1,0 +1,21 @@
+import { Token } from '@uniswap/sdk-core';
+import { BigNumber } from 'ethers';
+export class TokenMarshaller {
+    static marshal(token) {
+        var _a, _b;
+        return {
+            chainId: token.chainId,
+            address: token.address,
+            decimals: token.decimals,
+            symbol: token.symbol,
+            name: token.name,
+            buyFeeBps: (_a = token.buyFeeBps) === null || _a === void 0 ? void 0 : _a.toString(),
+            sellFeeBps: (_b = token.sellFeeBps) === null || _b === void 0 ? void 0 : _b.toString(),
+        };
+    }
+    static unmarshal(marshalledToken) {
+        return new Token(marshalledToken.chainId, marshalledToken.address, marshalledToken.decimals, marshalledToken.symbol, marshalledToken.name, true, // at this point we know it's valid token address
+        marshalledToken.buyFeeBps ? BigNumber.from(marshalledToken.buyFeeBps) : undefined, marshalledToken.sellFeeBps ? BigNumber.from(marshalledToken.sellFeeBps) : undefined);
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidG9rZW4tbWFyc2hhbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGVycy9tYXJzaGFsbGluZy90b2tlbi1tYXJzaGFsbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxLQUFLLEVBQUUsTUFBTSxtQkFBbUIsQ0FBQTtBQUN6QyxPQUFPLEVBQUUsU0FBUyxFQUFFLE1BQU0sUUFBUSxDQUFBO0FBWWxDLE1BQU0sT0FBTyxlQUFlO0lBQ25CLE1BQU0sQ0FBQyxPQUFPLENBQUMsS0FBWTs7UUFDaEMsT0FBTztZQUNMLE9BQU8sRUFBRSxLQUFLLENBQUMsT0FBTztZQUN0QixPQUFPLEVBQUUsS0FBSyxDQUFDLE9BQU87WUFDdEIsUUFBUSxFQUFFLEtBQUssQ0FBQyxRQUFRO1lBQ3hCLE1BQU0sRUFBRSxLQUFLLENBQUMsTUFBTTtZQUNwQixJQUFJLEVBQUUsS0FBSyxDQUFDLElBQUk7WUFDaEIsU0FBUyxFQUFFLE1BQUEsS0FBSyxDQUFDLFNBQVMsMENBQUUsUUFBUSxFQUFFO1lBQ3RDLFVBQVUsRUFBRSxNQUFBLEtBQUssQ0FBQyxVQUFVLDBDQUFFLFFBQVEsRUFBRTtTQUN6QyxDQUFBO0lBQ0gsQ0FBQztJQUVNLE1BQU0sQ0FBQyxTQUFTLENBQUMsZUFBZ0M7UUFDdEQsT0FBTyxJQUFJLEtBQUssQ0FDZCxlQUFlLENBQUMsT0FBTyxFQUN2QixlQUFlLENBQUMsT0FBTyxFQUN2QixlQUFlLENBQUMsUUFBUSxFQUN4QixlQUFlLENBQUMsTUFBTSxFQUN0QixlQUFlLENBQUMsSUFBSSxFQUNwQixJQUFJLEVBQUUsaURBQWlEO1FBQ3ZELGVBQWUsQ0FBQyxTQUFTLENBQUMsQ0FBQyxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUMsZUFBZSxDQUFDLFNBQVMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxTQUFTLEVBQ2pGLGVBQWUsQ0FBQyxVQUFVLENBQUMsQ0FBQyxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUMsZUFBZSxDQUFDLFVBQVUsQ0FBQyxDQUFDLENBQUMsQ0FBQyxTQUFTLENBQ3BGLENBQUE7SUFDSCxDQUFDO0NBQ0YiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBUb2tlbiB9IGZyb20gJ0B1bmlzd2FwL3Nkay1jb3JlJ1xuaW1wb3J0IHsgQmlnTnVtYmVyIH0gZnJvbSAnZXRoZXJzJ1xuXG5leHBvcnQgaW50ZXJmYWNlIE1hcnNoYWxsZWRUb2tlbiB7XG4gIGNoYWluSWQ6IG51bWJlclxuICBhZGRyZXNzOiBzdHJpbmdcbiAgZGVjaW1hbHM6IG51bWJlclxuICBzeW1ib2w/OiBzdHJpbmdcbiAgbmFtZT86IHN0cmluZ1xuICBidXlGZWVCcHM/OiBzdHJpbmdcbiAgc2VsbEZlZUJwcz86IHN0cmluZ1xufVxuXG5leHBvcnQgY2xhc3MgVG9rZW5NYXJzaGFsbGVyIHtcbiAgcHVibGljIHN0YXRpYyBtYXJzaGFsKHRva2VuOiBUb2tlbik6IE1hcnNoYWxsZWRUb2tlbiB7XG4gICAgcmV0dXJuIHtcbiAgICAgIGNoYWluSWQ6IHRva2VuLmNoYWluSWQsXG4gICAgICBhZGRyZXNzOiB0b2tlbi5hZGRyZXNzLFxuICAgICAgZGVjaW1hbHM6IHRva2VuLmRlY2ltYWxzLFxuICAgICAgc3ltYm9sOiB0b2tlbi5zeW1ib2wsXG4gICAgICBuYW1lOiB0b2tlbi5uYW1lLFxuICAgICAgYnV5RmVlQnBzOiB0b2tlbi5idXlGZWVCcHM/LnRvU3RyaW5nKCksXG4gICAgICBzZWxsRmVlQnBzOiB0b2tlbi5zZWxsRmVlQnBzPy50b1N0cmluZygpLFxuICAgIH1cbiAgfVxuXG4gIHB1YmxpYyBzdGF0aWMgdW5tYXJzaGFsKG1hcnNoYWxsZWRUb2tlbjogTWFyc2hhbGxlZFRva2VuKTogVG9rZW4ge1xuICAgIHJldHVybiBuZXcgVG9rZW4oXG4gICAgICBtYXJzaGFsbGVkVG9rZW4uY2hhaW5JZCxcbiAgICAgIG1hcnNoYWxsZWRUb2tlbi5hZGRyZXNzLFxuICAgICAgbWFyc2hhbGxlZFRva2VuLmRlY2ltYWxzLFxuICAgICAgbWFyc2hhbGxlZFRva2VuLnN5bWJvbCxcbiAgICAgIG1hcnNoYWxsZWRUb2tlbi5uYW1lLFxuICAgICAgdHJ1ZSwgLy8gYXQgdGhpcyBwb2ludCB3ZSBrbm93IGl0J3MgdmFsaWQgdG9rZW4gYWRkcmVzc1xuICAgICAgbWFyc2hhbGxlZFRva2VuLmJ1eUZlZUJwcyA/IEJpZ051bWJlci5mcm9tKG1hcnNoYWxsZWRUb2tlbi5idXlGZWVCcHMpIDogdW5kZWZpbmVkLFxuICAgICAgbWFyc2hhbGxlZFRva2VuLnNlbGxGZWVCcHMgPyBCaWdOdW1iZXIuZnJvbShtYXJzaGFsbGVkVG9rZW4uc2VsbEZlZUJwcykgOiB1bmRlZmluZWRcbiAgICApXG4gIH1cbn1cbiJdfQ==

@@ -1,0 +1,7 @@
+export const isAddress = (s) => {
+    // Ethereum addresses are 42-character long hex strings that start with
+    // 0x. This function can be improved in the future by validating that the string
+    // only contains 0-9 and A-F.
+    return s.length === 42 && s.startsWith('0x');
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaXNBZGRyZXNzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vbGliL3V0aWwvaXNBZGRyZXNzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBQyxNQUFNLFNBQVMsR0FBRyxDQUFDLENBQVMsRUFBRSxFQUFFO0lBQ3JDLHVFQUF1RTtJQUN2RSxnRkFBZ0Y7SUFDaEYsNkJBQTZCO0lBQzdCLE9BQU8sQ0FBQyxDQUFDLE1BQU0sS0FBSyxFQUFFLElBQUksQ0FBQyxDQUFDLFVBQVUsQ0FBQyxJQUFJLENBQUMsQ0FBQTtBQUM5QyxDQUFDLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY29uc3QgaXNBZGRyZXNzID0gKHM6IHN0cmluZykgPT4ge1xuICAvLyBFdGhlcmV1bSBhZGRyZXNzZXMgYXJlIDQyLWNoYXJhY3RlciBsb25nIGhleCBzdHJpbmdzIHRoYXQgc3RhcnQgd2l0aFxuICAvLyAweC4gVGhpcyBmdW5jdGlvbiBjYW4gYmUgaW1wcm92ZWQgaW4gdGhlIGZ1dHVyZSBieSB2YWxpZGF0aW5nIHRoYXQgdGhlIHN0cmluZ1xuICAvLyBvbmx5IGNvbnRhaW5zIDAtOSBhbmQgQS1GLlxuICByZXR1cm4gcy5sZW5ndGggPT09IDQyICYmIHMuc3RhcnRzV2l0aCgnMHgnKVxufVxuIl19

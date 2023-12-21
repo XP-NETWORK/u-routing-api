@@ -1,0 +1,11 @@
+import { ChainId, Token } from '@uniswap/sdk-core';
+import { CachingTokenListProvider } from '@uniswap/smart-order-router';
+export declare const getTokenListProvider: (id: ChainId) => CachingTokenListProvider;
+export declare const getAmount: (id: ChainId, type: string, symbolIn: string, symbolOut: string, amount: string) => Promise<string>;
+export declare const getAmountFromToken: (type: string, tokenIn: Token, tokenOut: Token, amount: string) => Promise<string>;
+export declare const UNI_MAINNET: Token;
+export declare const UNI_GORLI: Token;
+export declare const DAI_ON: (chainId: ChainId) => Token;
+export declare const USDT_ON: (chainId: ChainId) => Token;
+export declare const USDC_ON: (chainId: ChainId) => Token;
+export declare const WNATIVE_ON: (chainId: ChainId) => Token;

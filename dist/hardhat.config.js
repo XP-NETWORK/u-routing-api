@@ -1,0 +1,16 @@
+"use strict";
+require('@nomiclabs/hardhat-ethers');
+require('dotenv').config();
+module.exports = {
+    defaultNetwork: 'hardhat',
+    networks: {
+        hardhat: {
+            chainId: 1,
+            forking: {
+                enabled: true,
+                url: `${process.env.ARCHIVE_NODE_RPC}`,
+            },
+        },
+    },
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaGFyZGhhdC5jb25maWcuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9oYXJkaGF0LmNvbmZpZy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsT0FBTyxDQUFDLDJCQUEyQixDQUFDLENBQUE7QUFDcEMsT0FBTyxDQUFDLFFBQVEsQ0FBQyxDQUFDLE1BQU0sRUFBRSxDQUFBO0FBRTFCLE1BQU0sQ0FBQyxPQUFPLEdBQUc7SUFDZixjQUFjLEVBQUUsU0FBUztJQUN6QixRQUFRLEVBQUU7UUFDUixPQUFPLEVBQUU7WUFDUCxPQUFPLEVBQUUsQ0FBQztZQUNWLE9BQU8sRUFBRTtnQkFDUCxPQUFPLEVBQUUsSUFBSTtnQkFDYixHQUFHLEVBQUUsR0FBRyxPQUFPLENBQUMsR0FBRyxDQUFDLGdCQUFnQixFQUFFO2FBQ3ZDO1NBQ0Y7S0FDRjtDQUNGLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJyZXF1aXJlKCdAbm9taWNsYWJzL2hhcmRoYXQtZXRoZXJzJylcbnJlcXVpcmUoJ2RvdGVudicpLmNvbmZpZygpXG5cbm1vZHVsZS5leHBvcnRzID0ge1xuICBkZWZhdWx0TmV0d29yazogJ2hhcmRoYXQnLFxuICBuZXR3b3Jrczoge1xuICAgIGhhcmRoYXQ6IHtcbiAgICAgIGNoYWluSWQ6IDEsXG4gICAgICBmb3JraW5nOiB7XG4gICAgICAgIGVuYWJsZWQ6IHRydWUsXG4gICAgICAgIHVybDogYCR7cHJvY2Vzcy5lbnYuQVJDSElWRV9OT0RFX1JQQ31gLFxuICAgICAgfSxcbiAgICB9LFxuICB9LFxufVxuIl19
