@@ -1,0 +1,21 @@
+{
+  "name": "quote",
+  "requestId": "08e07d62-d5d5-4322-9aa7-b1e61a6d1f66",
+  "hostname": "169.254.42.61",
+  "pid": 13,
+  "quoteId": "08e07",
+  "tokenInAddress": "0xc84a1aeb001565Ea249fF521704612aC73cF7a09",
+  "chainId": 97,
+  "tokenOutAddress": "0x49dF31a568bec15AFEE978578Eec893Ac9a19b68",
+  "amount": "100",
+  "type": "exactIn",
+  "level": 50,
+  "err": {
+    "message": "Invariant failed: ADDRESSES",
+    "name": "Error",
+    "stack": "Error: Invariant failed: ADDRESSES\n    at Wst (/node_modules/tiny-invariant/dist/tiny-invariant.cjs.js:14:11)\n    at e.r.sortsBefore (/node_modules/@uniswap/sdk-core/src/entities/token.ts:79:5)\n    at iue.getPoolAddress (/node_modules/@uniswap/smart-order-router/src/providers/v3/pool-provider.ts:215:37)\n    at r0e.getPoolAddress (/node_modules/@uniswap/smart-order-router/src/providers/v3/caching-pool-provider.ts:134:30)\n    at r0e.getPools (/node_modules/@uniswap/smart-order-router/src/providers/v3/caching-pool-provider.ts:47:52)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at jj.getPools (/lib/handlers/pools/provider-migration/v3/traffic-switch-v3-pool-provider.ts:70:39)\n    at Que (/node_modules/@uniswap/smart-order-router/src/util/gas-factory-helpers.ts:144:24)\n    at async Promise.all (index 0)\n    at Dme.getGasModels (/node_modules/@uniswap/smart-order-router/src/routers/alpha-router/alpha-router.ts:1999:7)"
+  },
+  "msg": "Unexpected error in handler",
+  "time": "2023-12-21T15:34:57.035Z",
+  "v": 0
+}

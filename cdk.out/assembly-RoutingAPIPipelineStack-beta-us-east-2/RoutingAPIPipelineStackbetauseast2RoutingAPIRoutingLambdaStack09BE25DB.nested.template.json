@@ -370,7 +370,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-697184420048-us-east-2",
-     "S3Key": "76edb4f83e04683bbbd77c23ddaf57040cfef8852cfbf48ba1dca6178c43ad1b.zip"
+     "S3Key": "28412b0105d90ef67a7c7d8a38dc83893f691c2409c91f188fb176138ca1534a.zip"
     },
     "DeadLetterConfig": {
      "TargetArn": {
@@ -452,7 +452,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "RoutingAPIPipelineStack/beta-us-east-2/RoutingAPI/RoutingLambdaStack/RoutingLambda2/Resource",
-    "aws:asset:path": "../asset.76edb4f83e04683bbbd77c23ddaf57040cfef8852cfbf48ba1dca6178c43ad1b",
+    "aws:asset:path": "../asset.28412b0105d90ef67a7c7d8a38dc83893f691c2409c91f188fb176138ca1534a",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -483,7 +483,7 @@
     "aws:cdk:path": "RoutingAPIPipelineStack/beta-us-east-2/RoutingAPI/RoutingLambdaStack/RoutingLambda2/LogRetention/Resource"
    }
   },
-  "RoutingLambda2CurrentVersion49A1BB943f6074f42fc2ef0a5f4d4a031273580d": {
+  "RoutingLambda2CurrentVersion49A1BB94f76e1c99d73e954d0dc32162008a6bbc": {
    "Type": "AWS::Lambda::Version",
    "Properties": {
     "FunctionName": {
@@ -671,7 +671,7 @@
     },
     "FunctionVersion": {
      "Fn::GetAtt": [
-      "RoutingLambda2CurrentVersion49A1BB943f6074f42fc2ef0a5f4d4a031273580d",
+      "RoutingLambda2CurrentVersion49A1BB94f76e1c99d73e954d0dc32162008a6bbc",
       "Version"
      ]
     },
